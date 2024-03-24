@@ -9,10 +9,6 @@
  * };
  */
  
-#pragma GCC optimize("O3,unroll-loops")
-#pragma GCC target("avx2,bmi,bmi2,lzcnt,popcnt")
-auto __untie_cin = cin.tie(nullptr);
-auto __unsync_ios_stdio = ios_base::sync_with_stdio(false);
 class Solution {
 public:
     void reorderList(ListNode* head) {
