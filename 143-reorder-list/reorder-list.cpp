@@ -19,14 +19,14 @@ public:
         }
         ListNode *new_head = ptr_slow->next;
         ptr_slow->next = NULL;
-        ListNode *ptr_forward = NULL, *ptr_prev = NULL, *ptr_curr = new_head;
-        while(ptr_curr) {
-            ptr_forward = ptr_curr->next;
-            ptr_curr->next = ptr_prev;
-            ptr_prev = ptr_curr;
-            ptr_curr = ptr_forward;
+        ListNode* pre = NULL, *cur = new_head;
+        while (cur != NULL) {
+            ListNode* next = cur->next;
+            cur->next = pre;
+            pre = cur;
+            cur = next;
         }
-        new_head = ptr_prev;
+        new_head = pre;
         while(new_head) {
             ListNode *ptr1 = head->next, *ptr2 = new_head->next;
             head->next = new_head;
