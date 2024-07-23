@@ -3,18 +3,23 @@
 
 auto __untie_cin = cin.tie(nullptr);
 auto __unsync_ios_stdio = ios_base::sync_with_stdio(false);
-
 class Solution {
 public:
     vector<int> topKFrequent(vector<int>& nums, int k) {
-        map<int, int> count;
+        unordered_map<int, int> count;
         for (int n : nums) count[n] += 1;
-        multimap<int, int> order;
-        for (auto p : count) order.insert({p.second, p.first});
-        auto it = order.end();
+        vector<vector<int>> freq( nums.size() + 1);
+        for (auto p : count) freq[p.second].push_back(p.first);
         vector<int> res;
-        while (k--) {
-            res.push_back((--it)->second);
+        int n = freq.size();
+        while(k && n) {
+            if(!freq[--n].empty()){
+                for(int num : freq[n]) {
+                    if(k-- == 0) break;
+                    res.push_back(num);
+
+                }
+            }
         }
         return res;
     }
